@@ -10,11 +10,9 @@ function todaysWeather(cityName) {
     console.log(cityName)
     //  `${var}` instead of + for concat
     fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=imperial`)
-    //anonymous function
     .then(function(response) {
         return response.json()
     })
-    //anonymous function
     .then(function(data) {
         console.log(data)
         var nameDate = $("#nameDate")
@@ -27,11 +25,9 @@ function todaysWeather(cityName) {
         var windSpeed = $("#windSpeed")
         windSpeed.append(`Wind Speed: ${data.wind.speed.toString().slice(0,3)}`)
         var icon = data.weather[0].icon
+        console.log(icon)
         var description = data.weather[0].description
-        $("#weatherIcon").attr("alt", description)
-        $("#weatherIcon").attr("src", `./Assets/icons/${icon}@2x.png`)
     })
 }
 // 5 day forcast
 // api.openweathermap.org/data/2.5/forecast?q={city name}&appid={API key}
-//http://api.openweathermap.org/data/2.5/uvi?lat={lat}&lon={lon}&appid={API key}
