@@ -1,0 +1,23 @@
+#header {
+  text-align: center;
+  background-color: #343a40;
+  padding: 20px;
+}
+
+header > h1 {
+  color: white;
+}
+
+aside {
+  background-color: lightgray;
+  float: left;
+}
+
+#main {
+  float: right;
+}
+
+.card-body {
+  background-color: lightgreen;
+  margin: 5px;
+}
