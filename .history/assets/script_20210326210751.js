@@ -1,7 +1,7 @@
 var apiKey = "665b0a1eacab2f0c5a8cae8e0d5d8de0"
 var openWeatherApi = "http://api.openweathermap.org/data/2.5"
 
-$("#search").on("click", function() {
+$("#search").on("submit", function() {
     var cityName = $("#cityName").val()
     console.log(cityName)
     todaysWeather(cityName)
@@ -20,13 +20,13 @@ function todaysWeather(cityName) {
         console.log(data)
         var nameDate = $("#nameDate")
         // adding date in javascript
-        nameDate.text(`${data.name} ${new Date().toLocaleDateString()}`)
-        // math.round instead of .slice to avoid temps more than 2 characters long being cut off
-        var temp = Math.round(data.main.temp)
-        $("#temp").text(`Temperature: ${temp}°F`)
-        $("#humidity").text(`Humidity: ${data.main.humidity}%`)
-        var windSpeed = Math.round(data.wind.speed)
-        $("#windSpeed").text(`Wind Speed: ${windSpeed}`)
+        nameDate.append(`${data.name} ${new Date().toLocaleDateString()}`)
+        var temp = $("#temp")
+        temp.append(`Temperature: ${data.main.temp.toString().slice(0,2)}°F`)
+        var humidity = $("#humidity")
+        humidity.append(`Humidity: ${data.main.humidity}%`)
+        var windSpeed = $("#windSpeed")
+        windSpeed.append(`Wind Speed: ${data.wind.speed.toString().slice(0,3)}`)
         var icon = data.weather[0].icon
         var description = data.weather[0].description
         $("#weatherIcon").attr("alt", description)
@@ -39,11 +39,11 @@ function todaysWeather(cityName) {
         })
         .then(function(uvData) {
             var uvIndex = Math.round(uvData.value)
-            $("#uv").text(`${uvIndex}`)
+            $("#uv").append(`${uvIndex}`)
             if (uvIndex < 3) {
                 $("#uv").css("background-color", "green")
             } else if (uvIndex < 8) {
-                $("#uv").css("background-color", "orange")  
+                $("#uv").css("background-color", "yellow")  
             } else {
                 $("#uv").css("background-color", "red")  
             }

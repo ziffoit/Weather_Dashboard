@@ -20,13 +20,13 @@ function todaysWeather(cityName) {
         console.log(data)
         var nameDate = $("#nameDate")
         // adding date in javascript
-        nameDate.text(`${data.name} ${new Date().toLocaleDateString()}`)
-        // math.round instead of .slice to avoid temps more than 2 characters long being cut off
-        var temp = Math.round(data.main.temp)
-        $("#temp").text(`Temperature: ${temp}°F`)
-        $("#humidity").text(`Humidity: ${data.main.humidity}%`)
-        var windSpeed = Math.round(data.wind.speed)
-        $("#windSpeed").text(`Wind Speed: ${windSpeed}`)
+        nameDate.val(`${data.name} ${new Date().toLocaleDateString()}`)
+        var temp = $("#temp")
+        temp.val(`Temperature: ${data.main.temp.toString().slice(0,2)}°F`)
+        var humidity = $("#humidity")
+        humidity.val(`Humidity: ${data.main.humidity}%`)
+        var windSpeed = $("#windSpeed")
+        windSpeed.val(`Wind Speed: ${data.wind.speed.toString().slice(0,3)}`)
         var icon = data.weather[0].icon
         var description = data.weather[0].description
         $("#weatherIcon").attr("alt", description)
@@ -39,7 +39,7 @@ function todaysWeather(cityName) {
         })
         .then(function(uvData) {
             var uvIndex = Math.round(uvData.value)
-            $("#uv").text(`${uvIndex}`)
+            $("#uv").val(`${uvIndex}`)
             if (uvIndex < 3) {
                 $("#uv").css("background-color", "green")
             } else if (uvIndex < 8) {
