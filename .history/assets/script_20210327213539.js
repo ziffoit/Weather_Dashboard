@@ -1,26 +1,17 @@
 var apiKey = "665b0a1eacab2f0c5a8cae8e0d5d8de0"
 var openWeatherApi = "http://api.openweathermap.org/data/2.5"
 
-function requestWeather(cityName) {
-    todaysWeather(cityName)
-    fiveDayForecast(cityName)
-}
-
 var searchedCities = JSON.parse(localStorage.getItem("city")) || []
 for (let i = 0; i < searchedCities.length; i++) {
     const currentCity = searchedCities[i];
     var savedCity = $("<button></button>").text(currentCity)
-    savedCity.on("click", function() { 
-        requestWeather(currentCity)
-    })
-    
     $("#searchHistory").append(savedCity)
-
 }
 
 $("#search").on("click", function() {
     var cityName = $("#cityName").val()
-    requestWeather(cityName)
+    todaysWeather(cityName)
+    fiveDayForcast(cityName)
 
     searchedCities.push(cityName)
     localStorage.setItem("city", JSON.stringify(searchedCities))
@@ -74,7 +65,7 @@ function todaysWeather(cityName) {
     })
 }
 
-function fiveDayForecast(cityName) {
+function fiveDayForcast(cityName) {
     apiCall(`/forecast?q=${cityName}&appid=${apiKey}&units=imperial`)
     .then (function(fiveDay) {
         console.log("--",fiveDay)
