@@ -5,11 +5,6 @@ $("#search").on("click", function() {
     var cityName = $("#cityName").val()
     todaysWeather(cityName)
     fiveDayForcast(cityName)
-
-    var searchedCities = JSON.parse(localStorage.getItem("city")) || []
-
-    searchedCities.push(cityName)
-    localStorage.setItem("city", cityName)
 })
 
 function apiCall(endpoint) {
@@ -65,21 +60,11 @@ function fiveDayForcast(cityName) {
     .then (function(fiveDay) {
         console.log("--",fiveDay)
         var nextDay = [4, 12, 20, 28, 36]
-        nextDay.forEach(function(currentValue, j) {
-            console.log(fiveDay.list[currentValue].weather[0])
-            var {description, icon} = fiveDay.list[currentValue].weather[0]
+        nextDay.forEach(function(i) {
+            var {description, icon} = fiveDay.list[i].weather[0]
+            $(".icon").attr("alt", description)
+            $(".icon").attr("src", `./Assets/icons/${icon}@2x.png`)
 
-            $(`#icon${j+1}`).attr("alt", description)
-            $(`#icon${j+1}`).attr("src", `./Assets/icons/${icon}@2x.png`)
-
-            let [month, day] = fiveDay.list[currentValue].dt_txt.split(" ")[0].split("-")
-            $(`#date${j+1}`).text(`${month}/${day}`)
-
-            var temp = Math.round(fiveDay.list[currentValue].main.temp)
-            $(`#temp${j+1}`).text(`Temp: ${temp}°F`)
-
-            $(`#humidity${j+1}`).text(`Humidity: ${fiveDay.list[currentValue].main.humidity}%`)
         })
     })
 }
-

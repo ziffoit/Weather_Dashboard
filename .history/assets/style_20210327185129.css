@@ -17,16 +17,8 @@ aside {
   float: left;
 }
 
-#h1 {
-  text-align: center;
-}
-
 #main {
   float: right;
-}
-
-.card {
-  padding-left: 20px;
 }
 
 h2 {
@@ -36,6 +28,5 @@ h2 {
 
 .card-body {
   background-color: lightgreen;
-  margin: 2px;
-  font-size: 15px;
+  margin: 8px;
 }

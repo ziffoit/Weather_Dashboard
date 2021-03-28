@@ -5,11 +5,6 @@ $("#search").on("click", function() {
     var cityName = $("#cityName").val()
     todaysWeather(cityName)
     fiveDayForcast(cityName)
-
-    var searchedCities = JSON.parse(localStorage.getItem("city")) || []
-
-    searchedCities.push(cityName)
-    localStorage.setItem("city", cityName)
 })
 
 function apiCall(endpoint) {
@@ -82,4 +77,3 @@ function fiveDayForcast(cityName) {
         })
     })
 }
-
