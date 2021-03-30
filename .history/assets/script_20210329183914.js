@@ -33,11 +33,6 @@ function apiCall(endpoint) {
         })
 }
 
-function setWeatherIcon(idSelector, description, icon) {
-    $(idSelector).attr("alt", description)
-    $(idSelector).attr("src", `./Assets/icons/${icon}@2x.png`)
-}
-
 function todaysWeather(cityName) {
     //  `${var}` instead of + for concat. string interpolation.
     apiCall(`/weather?q=${cityName}&appid=${apiKey}&units=imperial`)
@@ -49,7 +44,8 @@ function todaysWeather(cityName) {
         nameDate.text(`${data.name} ${new Date().toLocaleDateString()}`)
 
         var {description, icon} = data.weather[0]
-        setWeatherIcon("#weatherIcon", description, icon)
+        $("#weatherIcon").attr("alt", description)
+        $("#weatherIcon").attr("src", `./Assets/icons/${icon}@2x.png`)
 
         // math.round instead of .slice to avoid temps more than 2 characters long being cut off
         var temp = Math.round(data.main.temp)
@@ -85,12 +81,13 @@ function fiveDayForecast(cityName) {
         var nextDay = [4, 12, 20, 28, 36]
         nextDay.forEach(function(currentValue, j) {
             console.log(fiveDay.list[currentValue].weather[0])
-
+            
             var {description, icon} = fiveDay.list[currentValue].weather[0]
-            setWeatherIcon(`#icon${j+1}`, description, icon)
 
-            // dt_txt: "2021-03-30 15:00:00" datetime text
-            let [_, month, day] = fiveDay.list[currentValue].dt_txt.split(" ")[0].split("-")
+            $(`#icon${j+1}`).attr("alt", description)
+            $(`#icon${j+1}`).attr("src", `./Assets/icons/${icon}@2x.png`)
+
+            let [month, day] = fiveDay.list[currentValue].dt_txt.split(" ")[0].split("-")
             $(`#date${j+1}`).text(`${month}/${day}`)
 
             var temp = Math.round(fiveDay.list[currentValue].main.temp)
