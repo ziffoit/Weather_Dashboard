@@ -32,6 +32,9 @@ function apiCall(endpoint) {
     return fetch(`${openWeatherApi}${endpoint}`)
         .then(function(response) {
             return response.json()
+        }).catch(function(error) {
+            console.error(error)
+            throw error
         })
 }
 
