@@ -1,5 +1,5 @@
 var apiKey = "665b0a1eacab2f0c5a8cae8e0d5d8de0"
-var openWeatherApi = "https://api.openweathermap.org/data/2.5"
+var openWeatherApi = "http://api.openweathermap.org/data/2.5"
 
 function requestWeather(cityName) {
     todaysWeather(cityName)
