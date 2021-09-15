@@ -70,7 +70,7 @@ function todaysWeather(cityName) {
         $("#humidity").text(`Humidity: ${data.main.humidity}%`)
 
         var windSpeed = Math.round(data.wind.speed)
-        $("#windSpeed").text(`Wind Speed: ${windSpeed}`)
+        $("#windSpeed").text(`Wind Speed: ${windSpeed} mph`)
 
         
         //lat and lon are already children of coord. object destructuring.
@@ -78,7 +78,7 @@ function todaysWeather(cityName) {
         apiCall(`/uvi?lat=${lat}&lon=${lon}&appid=${apiKey}`)
         .then(function(uvData) {
             var uvIndex = Math.round(uvData.value)
-            $("#uv").text(`${uvIndex}`)
+            $("#uv").text(`UV index: ${uvIndex}`)
             if (uvIndex < 3) {
                 $("#uv").css("background-color", "green")
             } else if (uvIndex < 8) {

@@ -8,6 +8,11 @@ body {
   padding: 20px;
 }
 
+#search {
+  background-color: lightslategrey;
+  border-radius: 5px;
+}
+
 header > h1 {
   color: white;
 }
@@ -15,6 +20,12 @@ header > h1 {
 aside {
   background-color: lightgray;
   float: left;
+}
+
+#h1, #cityName, #search {
+  display: block;
+  width: 100%;
+  margin: 10px;
 }
 
 #h1 {
