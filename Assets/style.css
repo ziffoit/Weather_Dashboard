@@ -9,7 +9,7 @@ body {
 }
 
 #search {
-  background-color: lightslategrey;
+  background-color: lightblue;
   border-radius: 5px;
 }
 
@@ -26,6 +26,16 @@ aside {
   display: block;
   width: 100%;
   margin: 10px;
+}
+
+#searchHistory {
+  width: 96.5%;
+  margin-left: 5px;
+} 
+
+#searchHistory button {
+  width: 100%;
+  margin: 5px;
 }
 
 #h1 {
